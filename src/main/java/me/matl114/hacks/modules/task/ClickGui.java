@@ -256,13 +256,6 @@ public class ClickGui extends BaseModule {
         ScreenAccess.of(new NlSkiaScreen()).openFromCurrent();
     }
 
-    }
-        Screen screen = new ClickGuiMainScreen(this, selections);
-        // add save when close
-        ScreenAccess.of(screen).addCloseFuture(() -> setClickGuiMeta(meta));
-        ScreenAccess.of(screen).openFromCurrent();
-    }
-
     public Stream<BaseModule> getShowModuleList(ModuleGroup group) {
         return group.getModules().stream().filter(BaseModule::shouldShowInGui);
     }
