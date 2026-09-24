@@ -19,6 +19,7 @@ import me.matl114.accessors.gui.ScreenAccess;
 import me.matl114.events.Event;
 import me.matl114.events.Listener;
 import me.matl114.gui.*;
+import me.matl114.gui.nl.NlSkiaScreen;
 import me.matl114.gui.basic.*;
 import me.matl114.gui.complex.config.ConfigurateNewStyleScreen;
 import me.matl114.gui.elements.ButtonElement;
@@ -252,21 +253,7 @@ public class ClickGui extends BaseModule {
     public static final int DEFAULT_Y = 40;
 
     public void openClickGui() {
-        List<String> modules = getModules();
-        ClickGuiMetaData meta = getClickGuiMetadata();
-        Map<String, Function<Screen, DrawableWidget>> selections = new LinkedHashMap<>();
-        selections.put("Module", (s) -> this.createModuleGroupList(modules, meta));
-        selections.put("Friends", (s) -> this.createFriendSettings(s, meta));
-        selections.put("CmdMacros", (s) -> this.createCmdMacrosSettings(s, meta));
-        selections.put("Hotkeys", (s) -> this.createKeyBindListSettings(s, meta));
-        selections.put("BaseSettings", (s) -> this.createBaseSettings(s, meta));
-        selections.put("GuiSettings", (s) -> this.createGuiSettings(s, meta));
-        selections.put("Config", (s) -> this.createConfig(meta));
-        if (BaritoneHooks.getInstance().isBaritoneAPISupported()) {
-            selections.put("Baritone", (s) -> this.createBaritoneScreen(s, meta));
-        }
-        ConfigurateNewStyleScreen gui = new ConfigurateNewStyleScreen(Text.literal("SlimefunHelper"), selections, "Module");
-        ScreenAccess.of(gui).openFromCurrent();
+        ScreenAccess.of(new NlSkiaScreen()).openFromCurrent();
     }
 
     /** Legacy implementation retained temporarily for migration of specialized widgets. */
