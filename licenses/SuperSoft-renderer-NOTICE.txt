@@ -1,0 +1,7 @@
+Portions of the Skia/JetBrains Compose renderer are derived from
+Xiamo-vip/SuperSoftClient-Compose-for-MC-1.21.4 (GPL-3.0-only):
+- src/main/kotlin/com/xiamo/gui/nl/NlComposeScreen.kt
+- src/main/kotlin/com/xiamo/utils/AWTUtils.kt
+- src/main/kotlin/com/xiamo/utils/GlUtils.kt
+Upstream: https://github.com/Xiamo-vip/SuperSoftClient-Compose-for-MC-1.21.4
+The applicable GNU GPL v3 license text is in licenses/SuperSoft-GPL-3.0.txt.

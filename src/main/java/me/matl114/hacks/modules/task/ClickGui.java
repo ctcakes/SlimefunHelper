@@ -19,6 +19,7 @@ import me.matl114.accessors.gui.ScreenAccess;
 import me.matl114.events.Event;
 import me.matl114.events.Listener;
 import me.matl114.gui.*;
+import me.matl114.gui.nl.NlSkiaScreen;
 import me.matl114.gui.basic.*;
 import me.matl114.gui.complex.config.ConfigurateNewStyleScreen;
 import me.matl114.gui.elements.ButtonElement;
@@ -252,6 +253,11 @@ public class ClickGui extends BaseModule {
     public static final int DEFAULT_Y = 40;
 
     public void openClickGui() {
+        ScreenAccess.of(new NlSkiaScreen()).openFromCurrent();
+    }
+
+    /** Legacy implementation retained temporarily for migration of specialized widgets. */
+    public void openLegacyClickGui() {
         List<String> modules = getModules();
         ClickGuiMetaData meta = getClickGuiMetadata();
         Map<String, Function<Screen, DrawableWidget>> selections = new LinkedHashMap<>();

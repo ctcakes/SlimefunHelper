@@ -4,6 +4,10 @@ pluginManagement {
 			name = 'Fabric'
 			url = 'https://repository.hanbings.io/proxy'
 		}
+		maven {
+			name = 'JetBrainsCompose'
+			url = 'https://maven.pkg.jetbrains.space/public/p/compose/dev'
+		}
 		gradlePluginPortal()
 	}
 }

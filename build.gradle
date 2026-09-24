@@ -3,6 +3,9 @@ plugins {
 	id 'maven-publish'
 	id 'com.gradleup.shadow' version "9.0.0-beta13"
 	id "com.diffplug.spotless" version "8.1.0"
+	id "org.jetbrains.kotlin.jvm" version "2.2.21"
+	id "org.jetbrains.compose" version "1.9.3"
+	id "org.jetbrains.kotlin.plugin.compose" version "2.2.21"
 }
 loom {
 	accessWidenerPath = file("src/main/resources/overrideList.accesswidener")
@@ -19,6 +22,8 @@ repositories {
 	gradlePluginPortal()
 	mavenLocal()
 	mavenCentral()
+	google()
+	maven { url = uri("https://maven.pkg.jetbrains.space/public/p/compose/dev") }
 
 	maven {
 		url 'https://maven.aliyun.com/nexus/content/groups/public'
@@ -64,6 +69,11 @@ dependencies {
 	mappings files("mapping/yarn-1.21.11+build-special-v5.local-v2.jar")
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+	implementation(compose.runtime)
+	implementation(compose.ui)
+	implementation(compose.foundation)
+	implementation(compose.material3)
+	implementation(compose.desktop.currentOs)
 	modCompileOnly files("libs/baritone-meteor-1.21.11.jar")
 //	modCompileOnly files("libs/xaeroworldmap-fabric-1.21.11-1.41.0.jar")
 //	modCompileOnly files("libs/xaerominimap-fabric-1.21.11-26.1.0.jar")
@@ -94,6 +104,14 @@ shadowJar {
 		include dependency('io.netty:netty-handler.*:.*')
 		include dependency('io.netty:netty-codec.*:.*')
 		include dependency('org.yaml:snakeyaml:.*')
+		include dependency('org.jetbrains.compose.*:.*:.*')
+		include dependency('org.jetbrains.skiko:.*:.*')
+		include dependency('org.jetbrains.kotlin:.*:.*')
+		include dependency('org.jetbrains.kotlinx:.*:.*')
+		include dependency('androidx.compose.*:.*:.*')
+		include dependency('androidx.collection:.*:.*')
+		include dependency('androidx.annotation:.*:.*')
+		include dependency('androidx.lifecycle:.*:.*')
 		exclude "mappings/mappings.tiny"
 	}
 	finalizedBy(tasks.remapJar)
