@@ -229,7 +229,7 @@ public final class NlMainScreen extends Screen {
     }
 
     @SuppressWarnings({"rawtypes", "unchecked"})
-    private static void changeConfig(Ref<?> ref) {
+    public static void changeConfig(Ref<?> ref) {
         if (ref instanceof FlagRef flag) flag.toggle();
         else if (ref instanceof EnumRef enumRef && enumRef.getValue() instanceof ConfigEnum current) {
             Object[] choices = current.getClass().getEnumConstants();
@@ -238,7 +238,7 @@ public final class NlMainScreen extends Screen {
         }
     }
 
-    private static void setConfig(Ref<?> ref, String text) {
+    public static void setConfig(Ref<?> ref, String text) {
         try {
             if (ref instanceof IntRef value) value.set(Integer.parseInt(text));
             else if (ref instanceof LongRef value) value.set(Long.parseLong(text));
