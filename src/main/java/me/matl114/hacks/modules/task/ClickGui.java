@@ -256,21 +256,7 @@ public class ClickGui extends BaseModule {
         ScreenAccess.of(new NlSkiaScreen()).openFromCurrent();
     }
 
-    /** Legacy implementation retained temporarily for migration of specialized widgets. */
-    public void openLegacyClickGui() {
-        List<String> modules = getModules();
-        ClickGuiMetaData meta = getClickGuiMetadata();
-        Map<String, Function<Screen, DrawableWidget>> selections = new LinkedHashMap<>();
-        selections.put("Module", (s) -> this.createModuleGroupList(modules, meta));
-        selections.put("Friends", (s) -> this.createFriendSettings(s, meta));
-        selections.put("CmdMacros", (s) -> this.createCmdMacrosSettings(s, meta));
-        selections.put("Hotkeys", (s) -> this.createKeyBindListSettings(s, meta));
-        selections.put("BaseSettings", (s) -> this.createBaseSettings(s, meta));
-        selections.put("GuiSettings", (s) -> this.createGuiSettings(s, meta));
-        selections.put("Config", (s) -> this.createConfig(meta));
-        if (BaritoneHooks.getInstance().isBaritoneAPISupported()) {
-            selections.put("Baritone", (s) -> this.createBaritoneScreen(s, meta));
-        }
+    }
         Screen screen = new ClickGuiMainScreen(this, selections);
         // add save when close
         ScreenAccess.of(screen).addCloseFuture(() -> setClickGuiMeta(meta));
